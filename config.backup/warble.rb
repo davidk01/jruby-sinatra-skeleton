@@ -8,10 +8,10 @@ Warbler::Config.new do |config|
   # - gemjar: package the gem repository in a jar file in WEB-INF/lib
   # - executable: embed a web server and make the war executable
   # - compiled: compile .rb files to .class files
-  config.features = %w(executable compiled runnable)
+  config.features = %w(compiled executable)
 
   # Application directories to be included in the webapp.
-  # config.dirs = %w(app config db lib log script vendor tmp)
+  config.dirs = %w(app config lib log vendor tmp public views)
 
   # Additional files/directories to include, above those in config.dirs
   # config.includes = FileList["db"]
@@ -41,7 +41,7 @@ Warbler::Config.new do |config|
   # config.bundler = false
 
   # An array of Bundler groups to avoid including in the war file.
-  # Defaults to ["development", "test", "assets"].
+  # Defaults to ["development", "test"].
   # config.bundle_without = []
 
   # Other gems to be included. If you don't use Bundler or a gemspec
@@ -53,7 +53,7 @@ Warbler::Config.new do |config|
   # config.gems << "tzinfo"
 
   # Uncomment this if you don't want to package rails gem.
-  # config.gems -= ["rails"]
+  config.gems -= ["rails"]
 
   # The most recent versions of gems are used.
   # You can specify versions of gems by using a hash assignment:
@@ -78,7 +78,7 @@ Warbler::Config.new do |config|
 
   # Name of the archive (without the extension). Defaults to the basename
   # of the project directory.
-  # config.jar_name = "mywar"
+  config.jar_name = "sinatra-test"
 
   # Name of the MANIFEST.MF template for the war file. Defaults to a simple
   # MANIFEST.MF that contains the version of Warbler used to create the war file.
@@ -88,10 +88,6 @@ Warbler::Config.new do |config|
   # files will be compiled. Default is to compile all \.rb files in
   # the application.
   # config.compiled_ruby_files = FileList['app/**/*.rb']
-
-  # When set to true, Warbler will override the value of ENV['GEM_HOME'] even it
-  # has already been set.
-  # config.override_gem_home = false
 
   # === War files only below here ===
 
@@ -118,13 +114,13 @@ Warbler::Config.new do |config|
   # * <tt>winstone</tt> (default) - Winstone 0.9.10 from sourceforge
   # * <tt>jenkins-ci.winstone</tt> - Improved Winstone from Jenkins CI
   # * <tt>jetty</tt> - Embedded Jetty from Eclipse
-  # config.webserver = 'jetty'
+  config.webserver = 'jetty'
 
   # Value of RAILS_ENV for the webapp -- default as shown below
   # config.webxml.rails.env = ENV['RAILS_ENV'] || 'production'
 
   # Application booter to use, one of :rack, :rails, or :merb (autodetected by default)
-  # config.webxml.booter = :rails
+  config.webxml.booter = :rack
 
   # Set JRuby to run in 1.9 mode.
   # config.webxml.jruby.compat.version = "1.9"
